@@ -1,3 +1,9 @@
+# Cache files
+train.txt
+val.txt
+train.cache
+val.cache
+
 # Repo-specific GitIgnore ----------------------------------------------------------------------------------------------
 *.jpg
 *.jpeg
@@ -261,3 +267,6 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+
+# Save challenge results
+!results/*

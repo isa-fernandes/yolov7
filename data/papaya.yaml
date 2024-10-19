@@ -1,0 +1,5 @@
+# I assume you are currently in yolov7 folder
+train: ./train.txt
+val: ./val.txt
+nc: 1  # Number of classes
+names: ['papaya']  # List of class names

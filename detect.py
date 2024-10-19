@@ -67,6 +67,7 @@ def detect(save_img=False):
     old_img_b = 1
 
     t0 = time.time()
+    counter_5s_before = None
     for path, img, im0s, vid_cap in dataset:
         img = torch.from_numpy(img).to(device)
         img = img.half() if half else img.float()  # uint8 to fp16/32
@@ -130,6 +131,30 @@ def detect(save_img=False):
 
             # Print time (inference + NMS)
             print(f'{s}Done. ({(1E3 * (t2 - t1)):.1f}ms) Inference, ({(1E3 * (t3 - t2)):.1f}ms) NMS')
+
+            w = int(im0.shape[1]/7)
+            h = int(im0.shape[0]/17)
+            x = im0.shape[1]-w
+            y = 0
+            print(x,y,w,h)
+            im0 = cv2.rectangle(im0, (x, y), (x + w, y + h), (0,0,0), -1)
+            font = cv2.FONT_HERSHEY_DUPLEX
+            bottomLeftCornerOfText = (x+2,h-10)
+            fontScale = im0.shape[1]/1610
+            fontColor = (255,255,255)
+            thickness = 1
+            lineType = 2
+            if (dataset.mode == 'image'):
+                text = f"Papayas: {len(pred[0])}"
+            elif (dataset.frame % 150 == 0) and (dataset.frame <= 1050):
+                text = f"Papayas: {counter_5s_before}"
+                counter_5s_before += len(pred[0])
+            elif counter_5s_before is None:
+                text = None
+                counter_5s_before = len(pred[0])
+
+            if text is not None:
+                cv2.putText(im0, text, bottomLeftCornerOfText, font, fontScale, fontColor, thickness, lineType)
 
             # Stream results
             if view_img:
