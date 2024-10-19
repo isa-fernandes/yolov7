@@ -3,7 +3,7 @@
 1. Create and activate a conda environment running:
 ``` shell
 conda create -n yolov7 python=3.9
-conda activate
+conda activate yolov7
 ```
 
 2. Run the following command from inside the project folder to install the requirements:
@@ -11,9 +11,7 @@ conda activate
 pip install -r requirements.txt
 ```
 
-3. Download the initial pretrained network and put inside the project folder:
-
-[`yolov7.pt`](https://github.com/WongKinYiu/yolov7/releases/download/v0.1/yolov7.pt)
+3. Download the initial pretrained network and put inside the project folder: [`yolov7.pt`](https://github.com/WongKinYiu/yolov7/releases/download/v0.1/yolov7.pt)
 
 # Preprocess dataset
 
@@ -28,9 +26,7 @@ python train.py --weights yolov7.pt --data "data/papaya.yaml" --workers 4 --batc
 
 # Inference 
 
-```
 Note: If you skipped training step and want to use our trained model, download [`best.pt`](https://drive.google.com/file/d/1Mnfp0FQq2YnB9t5O2IQZcsEVwziHCWjq/view?usp=sharing) and use the path to this file as argument for `weights` below.
-```
 
 ## Image
 
@@ -52,4 +48,4 @@ Run inference on the test video running the following command:
 python detect.py --weights runs/train/yolov710/weights/best.pt --source "<your_path>\Teste_Video.mp4"
 ```
 
-[![Watch the video]](https://drive.google.com/uc?export=view&id=1MImYuArok7Ju0qz1xMxDQbiCePH2b5Av)
+[[Watch the video]](https://drive.google.com/file/d/1MImYuArok7Ju0qz1xMxDQbiCePH2b5Av/view?usp=sharing)
